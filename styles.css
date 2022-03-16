@@ -1,0 +1,25 @@
+.show{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+table{
+    width: 1500px;
+}
+body{
+    background-color: rgb(35, 36, 87);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    color:teal
+
+}
+tr{
+    background-color: white;
+    color:black
+}
+
+thead{
+    background-color: black;
+    color:blanchedalmond
+}
