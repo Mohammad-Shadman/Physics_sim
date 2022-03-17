@@ -9,17 +9,19 @@
 
 #include <fstream>
 
+//compile command for ncurses
 //g++ main.cpp vector/vector.cpp vector/vector.h physics/physics.cpp physics/physics.h -LC:\MinGW\lib\libpdcurses -llibpdcurses
 
+//main compile command
 //g++ main.cpp vector/vector.cpp vector/vector.h physics/physics.cpp physics/physics.h line/line.cpp line/line.h
 
 
 void updateFile(std::ofstream &myFile,Vector nums){
-    (std::ofstream::out | std::ofstream::trunc);
+    myFile.open("Data.csv",std::ios::out);
 
     myFile<<"x,y"<<std::endl;
     myFile << nums.x<<","<<nums.y<<std::endl;    
-    
+    myFile.close();
     
 }
 
@@ -39,12 +41,11 @@ int main (){
     //Wall left (Wall::RIGHT,l);
     //Wall down (Wall::UP,d);
     //Wall right (Wall::LEFT,r);
-    
-    float u=0,d=50,r=100,l=0,n=1;
-    std::ofstream Data("Data.csv");
-    
     //Data<< "x,y"<<std::endl;
-
+    //float u=0,d=50,r=100,l=0,
+    
+    float n=1;
+    std::ofstream Data;
     Vector pos (50,60);
     Physics p (pos, 0.75,4,1,1);
     Line line1 = Line(Vector(40,50),Vector(70,50),1);
@@ -52,7 +53,6 @@ int main (){
     float force=0.01;
     int prev_v;
     while(n==1){
-        
         key = _getch();
         //gets the key that is being pressed with conio or curses and likes each key to a direction
         switch(key){
@@ -71,7 +71,7 @@ int main (){
             case 'k':
                 n=0;
         }
-        if (p.plr.y < 29) { p.acc.y +=.2;}
+        //if (p.plr.y < 29) { p.acc.y +=.2;}
 
         //if (key != 'w'|| key != 'a'|| key != 's'|| key != 'd'){p.fric();} <- old code for applying faux friction 
         
@@ -83,6 +83,7 @@ int main (){
         }
         line1.fricCalc(p);
         line1.findAltitude(p);
+        p.applyForces(1,1,1);
         //p.acc = up.collision(p);
         //p.acc = down.collision(p);
         //p.acc = left.collision(p);

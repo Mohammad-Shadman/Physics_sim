@@ -26,6 +26,16 @@
         f.scale(1/mass);
         acc.add(f);
     }
+
+    void Physics::drag(float coffi,float dens=1){
+        Vector F_d = vel;
+        float magnitude = vel.mag();
+        //force of drage is = to (1/2)*area*density*(mag of velocity^2)*(coaficient of drag with relation to friction on the skin)
+        F_d.scale(-0.5*(radius*radius*3.1416)*dens*coffi*magnitude*magnitude);
+        
+        addf(F_d);   
+
+    }
     
     Vector Physics::apply(){
         //if (vel.mag() < 4)
@@ -49,7 +59,7 @@
         
         
     }
-    void Physics::applyForces(float gravity=0,Vector wind=0,Vector friction=0){
+    void Physics::applyForces(float coffi,float dens=1,float gravity=0,Vector wind){
         Vector forces= Vector (0,0);
         
         //gravity
@@ -58,6 +68,8 @@
         forces.add(wind);
         //friction
         //forces.add(Vector(0,n));
+        drag(coffi, dens);
+        
     }
 
     Vector Physics::findN(){

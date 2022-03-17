@@ -10,14 +10,14 @@ public:
     Vector acc;
     float P_mu,mass,elastisity,radius,dt,invElast;
     Physics(Vector, float,float,float,float);
-    void applyForces(float,Vector,Vector);
+    void applyForces(float ,float,float ,Vector=Vector(0,0));
     void addf(Vector f);
     void collision(Vector,Vector,float);
     Vector apply();
     void fric(Vector);
     //void collision(Line);
     Vector findN();
-    
+    void drag(float ,float );
 };
 
 #endif
