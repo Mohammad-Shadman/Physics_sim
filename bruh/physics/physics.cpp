@@ -8,7 +8,7 @@
     Vector vel;
     Vector acc;
     Vector norm;
-    Vector orientation = Vector (0,1);// normalized vector of velocity before it goes to 0. first initiallized to look up
+    Vector orientation(0,1);// normalized vector of velocity before it goes to 0. first initiallized to look up
     float P_mu,mass,elastisity,radius,dt,invElast;
 
     Physics::Physics( Vector p, float C_mu=1,float m=1,float e =1,float r=1){
@@ -27,10 +27,10 @@
         acc.add(f);
     }
 
-    void Physics::drag(float coffi,float dens=1){
+    void Physics::drag(float coffi=1,float dens=1){
         Vector F_d = vel;
         float magnitude = vel.mag();
-        //force of drage is = to (1/2)*area*density*(mag of velocity^2)*(coaficient of drag with relation to friction on the skin)
+        //force of drage is = to (1/2)*area*density*( (mag of velocity)^2 )*(coaficient of drag with relation to friction on the skin)
         F_d.scale(-0.5*(radius*radius*3.1416)*dens*coffi*magnitude*magnitude);
         
         addf(F_d);   
@@ -59,11 +59,11 @@
         
         
     }
-    void Physics::applyForces(float coffi,float dens=1,float gravity=0,Vector wind){
-        Vector forces= Vector (0,0);
-        
+    void Physics::applyForces(Vector wind,float coffi , float dens=1, float gravity=0){
+        Vector forces(0,0);
+        Vector g(0,gravity);
         //gravity
-        forces.add(Vector(0,gravity));
+        forces.add(g);
         //wind
         forces.add(wind);
         //friction

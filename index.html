@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <input id="myCSV" type = "file" accept="Data.csv"/>
     <link href = "styles.css" rel = "stylesheet">
     <script src = "script.js" defer></script>
     <title>Bruh 2.0</title>
@@ -21,7 +21,7 @@
                         <th>Canvas area</th>
                         <th>Data</th>
                         <th>Controls</th>
-
+                        
                     </tr>
                 </thead>
             </div>
@@ -29,8 +29,10 @@
                 <tbody>
                     <tr>
                         <th><canvas id="canvas" width="1000" height="500" style="border:1px solid #f3f1f1;"></canvas></th>
-                        <th id = "pos"></th>
-                        <th>the controls are simple <br> w a s d for movment and it is basic physics.<br></th>
+                        
+                        <th id = "pos"><output id="out">file contents will appear here</output></th>
+                        
+                        <th>the controls are simple <br> w a s d for movment and it is basic physics.<br><p>Select local CSV File:</p><br><input id="csv" type="file"></th>
                                                 
                     </tr>
                 </tbody>

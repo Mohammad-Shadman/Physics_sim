@@ -16,11 +16,13 @@
 //g++ main.cpp vector/vector.cpp vector/vector.h physics/physics.cpp physics/physics.h line/line.cpp line/line.h
 
 
-void updateFile(std::ofstream &myFile,Vector nums){
+void updateFile(std::ofstream &myFile,Vector player){
     myFile.open("Data.csv",std::ios::out);
 
-    myFile<<"x,y"<<std::endl;
-    myFile << nums.x<<","<<nums.y<<std::endl;    
+    myFile<<"player.x,player.y\n";
+    myFile << player.x<<","<<player.y<<"\n";
+    
+        
     myFile.close();
     
 }
@@ -46,11 +48,18 @@ int main (){
     
     float n=1;
     std::ofstream Data;
+    std::ofstream lines_f;
     Vector pos (50,60);
     Physics p (pos, 0.75,4,1,1);
-    Line line1 = Line(Vector(40,50),Vector(70,50),1);
+    Line lines[] = {Line( Vector(40,50), Vector(70,50),1 ), Line (Vector(80,10),Vector(80,100),1)};
+    int nol=1;//nomber of lines
+    lines_f.open("lines.csv",std::ios::out);
+    for (int i = 0; i<nol;i++){
+        lines_f << lines[i].a.x<<","<<lines[i].a.y<<","<<lines[i].b.x<< ","<<lines[i].b.y<<"\n";
+    }
+    lines_f.close();
     char key;
-    float force=0.01;
+    float force=0.1;
     int prev_v;
     while(n==1){
         key = _getch();
@@ -81,9 +90,11 @@ int main (){
           //p.plr.y-=.1;
           if (p.vel.y > 0){p.vel.y*=-0.99;p.plr.y += p.vel.y;}
         }
-        line1.fricCalc(p);
-        line1.findAltitude(p);
-        p.applyForces(1,1,1);
+        for(int i=0;i<nol;i++){
+            lines[i].fricCalc(p);
+            lines[i].findAltitude(p);
+        }
+        p.applyForces(0.8,0.3,1,Vector(.5,0));
         //p.acc = up.collision(p);
         //p.acc = down.collision(p);
         //p.acc = left.collision(p);
@@ -93,6 +104,7 @@ int main (){
         
         updateFile(Data, p.plr);
         /*
+        old ncurses code ment for the console version
         clear();
         mvprintw(1,1,"pos (x = %.2f , y = %.2f), vel (x = %.2f , y = %.2f , mag = %.2f), acc (x = %.2f , y = %.2f , mag = %.2f)", pos.x, pos.y, p.vel.x, p.vel.y, p.vel.mag(), p.acc.x, p.acc.y, p.acc.mag());
         mvaddch(pos.y,pos.x,'@');

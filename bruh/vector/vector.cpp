@@ -8,14 +8,29 @@ float Vector::abso(float n){
     return n;
 }
 
+
+Vector::Vector(const Vector &v1){
+    x=v1.x;
+    y=v1.y;
+
+}
+
+
 Vector::Vector (float xx, float yy) {
     x = xx;
     y = yy;
 }
 
+
 void Vector::operator= (Vector v1){
     x = v1.x;
     y = v1.y;
+}
+Vector Vector::operator- (Vector v1){
+    return Vector(x-v1.x , y-v1.y);
+}
+Vector Vector::operator+ (Vector v1){
+    return Vector(x+v1.x , y+v1.y);
 }
 
 void Vector::operator+= (Vector v1){
@@ -81,4 +96,9 @@ Vector Vector::swapXY(){
 
 Vector Vector::swapRXY(){
     return Vector(y,x);
+}
+
+Vector Vector::proj(Vector u){
+    return u.scaleR(dot(Vector(x,y),u)/(x*x+y*y));
+    
 }
