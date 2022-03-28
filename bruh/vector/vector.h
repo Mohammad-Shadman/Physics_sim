@@ -11,7 +11,7 @@ public:
     
     //Vector ();
     Vector(const float xx = 0, const float yy = 0);
-    //Vector(const Vector &v1)=default;
+    
     
 
     static Vector returnV(float ,float );

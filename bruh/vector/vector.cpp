@@ -15,10 +15,6 @@ Vector::Vector(){
 
 }
 /
-Vector::Vector(const Vector &v1)
-{
-    x=v1.x;y=v1.y;
-}
 ///*
 */
 
