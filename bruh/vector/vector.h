@@ -9,7 +9,7 @@ public:
     float y;
     float abso(float n);
     
-    //Vector ();
+    //Vector(const Vector&);
     Vector(const float xx = 0, const float yy = 0);
     
     

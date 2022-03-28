@@ -5,6 +5,7 @@
 #include "vector/vector.h"
 #include "physics/physics.h"
 #include "line/line.h"
+
 #include <conio.h>
 
 #include <fstream>
@@ -17,10 +18,10 @@
 
 
 
-void updateFile(std::ofstream &myFile,Vector player){
+void updateFile(std::ofstream &myFile,Vector& player){
     myFile.open("Data.csv",std::ios::out);
 
-    myFile<<"player.x,player.y\n";
+    myFile<<"x,y\n";
     myFile << player.x<<","<<player.y<<"\n";
     
         
@@ -50,10 +51,10 @@ int main (){
     float n=1;
     std::ofstream Data;
     std::ofstream lines_f;
-    Vector pos (50,60);
-    Physics p ( 0.75,4,1,1,pos);
+    Vector pos = Vector (50,60);
+    Physics p ( pos,0.75,4,1,1);
     Line lines[] = {Line( (Vector(40,50)), (Vector(70,50)),1) , Line(Vector(80,10),Vector(80,100),1)};
-    int nol=1;//nomber of lines
+    int nol=sizeof(lines)/sizeof(Line);//number of lines
     lines_f.open("lines.csv",std::ios::out);
     for (int i = 0; i<nol;i++){
         lines_f << lines[i].a.x<<","<<lines[i].a.y<<","<<lines[i].b.x<< ","<<lines[i].b.y<<"\n";

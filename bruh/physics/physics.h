@@ -9,7 +9,7 @@ public:
     Vector vel;
     Vector acc;
     float P_mu,mass,elastisity,radius,dt,invElast;
-    Physics( float,float,float,float,Vector);
+    Physics(Vector, float,float,float,float);
     void applyForces( Vector, float ,float,float );
     void addf(Vector f);
     void collision(Vector,Vector,float);

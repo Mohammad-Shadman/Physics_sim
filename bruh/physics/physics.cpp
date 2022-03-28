@@ -11,7 +11,7 @@
     Vector orientation(0,1);// normalized vector of velocity before it goes to 0. first initiallized to look up
     float P_mu,mass,elastisity,radius,dt,invElast;
 
-    Physics::Physics( float C_mu=1,float m=1,float e =1,float r=1,Vector p=Vector(0,0)){
+    Physics::Physics(Vector p, float C_mu=1,float m=1,float e =1,float r=1){
         
         plr = p;
         P_mu = C_mu;
