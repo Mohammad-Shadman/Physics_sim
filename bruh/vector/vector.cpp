@@ -8,19 +8,29 @@ float Vector::abso(float n){
     return n;
 }
 
-
-Vector::Vector(const Vector &v1){
-    x=v1.x;
-    y=v1.y;
+/*
+Vector::Vector()=;
+Vector::Vector(){
+    x=0;y=0;
 
 }
+/
+Vector::Vector(const Vector &v1)
+{
+    x=v1.x;y=v1.y;
+}
+///*
+*/
 
 
-Vector::Vector (float xx, float yy) {
+Vector::Vector (float xx =0, float yy= 0) {
     x = xx;
     y = yy;
 }
 
+Vector Vector::returnV(float xx,float yy){
+    return (Vector(xx,yy));
+}
 
 void Vector::operator= (Vector v1){
     x = v1.x;

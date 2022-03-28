@@ -11,7 +11,7 @@
     Vector orientation(0,1);// normalized vector of velocity before it goes to 0. first initiallized to look up
     float P_mu,mass,elastisity,radius,dt,invElast;
 
-    Physics::Physics( Vector p, float C_mu=1,float m=1,float e =1,float r=1){
+    Physics::Physics( float C_mu=1,float m=1,float e =1,float r=1,Vector p=Vector(0,0)){
         
         plr = p;
         P_mu = C_mu;
@@ -59,13 +59,13 @@
         
         
     }
-    void Physics::applyForces(Vector wind,float coffi , float dens=1, float gravity=0){
+    void Physics::applyForces(Vector* wind,float coffi , float dens=1, float gravity=0){
         Vector forces(0,0);
         Vector g(0,gravity);
         //gravity
         forces.add(g);
         //wind
-        forces.add(wind);
+        forces.add(*wind);
         //friction
         //forces.add(Vector(0,n));
         drag(coffi, dens);

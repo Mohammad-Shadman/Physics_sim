@@ -8,9 +8,13 @@ public:
     float x;
     float y;
     float abso(float n);
+    
     //Vector ();
-    Vector(const Vector &v1);
-    Vector (float xx = 0, float yy = 0);
+    Vector(const float xx = 0, const float yy = 0);
+    //Vector(const Vector &v1)=default;
+    
+
+    static Vector returnV(float ,float );
     void sub (Vector v1);
     Vector subR (Vector v1);
     void add (Vector v1);

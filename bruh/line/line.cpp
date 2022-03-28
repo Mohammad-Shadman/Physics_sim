@@ -10,8 +10,8 @@
     Vector Normal(0,0),a(0,0),b(0,0);
     
     Line::Line(Vector A, Vector B,float m = 0){
-        a=A;
-        b=B;
+        a=(A);
+        b= (B);
         Normal =(b.addR(a.scaleR(-1)).y,b.addR(a.scaleR(-1)).x);
         Normal.norm(Normal);
         mu=m;

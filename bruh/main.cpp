@@ -16,6 +16,7 @@
 //g++ main.cpp vector/vector.cpp vector/vector.h physics/physics.cpp physics/physics.h line/line.cpp line/line.h
 
 
+
 void updateFile(std::ofstream &myFile,Vector player){
     myFile.open("Data.csv",std::ios::out);
 
@@ -50,8 +51,8 @@ int main (){
     std::ofstream Data;
     std::ofstream lines_f;
     Vector pos (50,60);
-    Physics p (pos, 0.75,4,1,1);
-    Line lines[] = {Line( Vector(40,50), Vector(70,50),1 ), Line (Vector(80,10),Vector(80,100),1)};
+    Physics p ( 0.75,4,1,1,pos);
+    Line lines[] = {Line( (Vector(40,50)), (Vector(70,50)),1) , Line(Vector(80,10),Vector(80,100),1)};
     int nol=1;//nomber of lines
     lines_f.open("lines.csv",std::ios::out);
     for (int i = 0; i<nol;i++){
@@ -94,7 +95,7 @@ int main (){
             lines[i].fricCalc(p);
             lines[i].findAltitude(p);
         }
-        p.applyForces(0.8,0.3,1,Vector(.5,0));
+        p.applyForces(Vector(.5,0),0.8,0.3,1);
         //p.acc = up.collision(p);
         //p.acc = down.collision(p);
         //p.acc = left.collision(p);
