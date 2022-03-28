@@ -59,13 +59,13 @@
         
         
     }
-    void Physics::applyForces(Vector* wind,float coffi , float dens=1, float gravity=0){
+    void Physics::applyForces(Vector wind,float coffi , float dens=1, float gravity=0){
         Vector forces(0,0);
         Vector g(0,gravity);
         //gravity
         forces.add(g);
         //wind
-        forces.add(*wind);
+        forces.add(wind);
         //friction
         //forces.add(Vector(0,n));
         drag(coffi, dens);
